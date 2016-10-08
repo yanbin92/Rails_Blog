@@ -1,0 +1,37 @@
+<H1>New Article</H1>
+<%= render 'articles/form'%>
+<!--
+:partial => 'missing', :formats => [:html]
+ 使用局部视图去掉视图中的重复代码
+按照约定，局部视图的文件名以下划线开头。
+除了第一行 form_for 的用法变了之外，其他代码都和之前一样。之所以能在两个动作中共用一个 form_for，是因为 @article 是一个资源，对应于符合 REST 架构的路由，Rails 能自动分辨使用哪个地址和请求方法。
+关于这种 form_for 用法的详细说明，请查阅 API 文档。
+
+<%= form_for :article,url:"/articles" do |f| %>
+ <% if @article!=nil&&@article.errors.any? %>
+   <div id="error_explanation">
+      <h2><%= pluralize(@article.errors.count, "error") %> prohibited
+        this article from being saved:</h2>
+      <ul>
+      <% @article.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+ <% end %>
+ <p>
+    <%=f.label :title%><br>
+    <%=f.text_field :title%>
+ </p>
+
+ <p>
+    <%=f.label :text%><br>
+    <%=f.text_area :text%>
+ </p>
+ <p>
+    <%=f.submit %>
+ </p>
+<% end %>
+-->
+<%= link_to 'Back', articles_path %>
+
